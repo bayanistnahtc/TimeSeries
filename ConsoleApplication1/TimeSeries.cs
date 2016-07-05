@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 namespace ConsoleApplication1
 {
     /**
+     * by Rustam Tukhvatov
+     * 03.07.2016.
      * The Time series class contain methods to procces it
      * summation, subtraction, exponent, median, mode,  abs of elements 
      * Aggregation: sum, mean
      * 
      */
      
-        
+       
     class TimeSeries
     {
         /// <summary>
@@ -22,7 +24,15 @@ namespace ConsoleApplication1
         private List <DateTime> time;
         private List<Double> values;
         private List<Double> weights;
-        int dimension; 
+        int dimension;
+
+        private TimeSeries()
+        {
+            this.values = new List<Double>();
+            time = new List<DateTime>();
+            weights = new List<Double>();
+            dimension = 0;
+        }
 
         private TimeSeries(List<Double> values)
         {
@@ -146,13 +156,17 @@ namespace ConsoleApplication1
         /// </summary>
         /// <param name="i"></param>
         /// <returns>e^{u_{i}}</returns>
-        public double? exponentByIndex(int i)
+        public double exponentByIndex(int i)
         {
-            if (i >= 0 && i < values.Count())
+            try
             {
                 return Math.Exp(values[i]);
+            }catch(IndexOutOfRangeException e)
+            {
+                System.Console.WriteLine(e.Message);
+                // Set IndexOutOfRangeException to the new exception's InnerException.
+                throw new System.ArgumentOutOfRangeException("index parameter is out of range.", e);
             }
-            return null;
             
         }
        /// <summary>
@@ -220,7 +234,7 @@ namespace ConsoleApplication1
                 }
                 return new TimeSeries(smoothTS, this.time, this.weights);
             }
-            return null;
+            return new TimeSeries();
            
         }
 
@@ -276,7 +290,7 @@ namespace ConsoleApplication1
                 }
                 return new TimeSeries(result);
             }
-            return null;
+            return new TimeSeries();
         }
         /// <summary>
         /// S_{i} = u_{i} - v_{i}
@@ -297,7 +311,7 @@ namespace ConsoleApplication1
                 }
                 return new TimeSeries(result);
             }
-            return null;
+            return new TimeSeries();
         }
     }
 
