@@ -201,7 +201,7 @@ namespace ConsoleApplication1
         }
         public TimeSeries cumulativeSum(int index)
         {
-            List<Double> cSum = new List<Double>;
+            List<Double> cSum = new List<Double>();
             double previuos = values[0];
             cSum.Add(previuos);
             for(var i = 1; i < index; i++)
