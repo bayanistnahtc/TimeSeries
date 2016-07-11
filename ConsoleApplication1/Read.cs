@@ -45,6 +45,40 @@ namespace ConsoleApplication1
             }
 
         }
+
+        public double[,] fromTXT(string file)
+        {
+           
+            try
+            {
+                string[] strs = System.IO.File.ReadAllText(file).Split('\n');
+                var row = strs.Length;
+                var column = strs[0].Split('\t').Length;
+                double[,] result = new double[row, column];
+                //foreach(var i in strs)
+                //{
+                //    Console.WriteLine(i.Split('\t')[1]);
+                //}
+                for (int i = 0; i < row; i++) 
+                {
+                    var splitted = strs[i].Split('\t');
+                    for (int j = 0; j < column; j++)
+                    {
+                        result[i, j] = Convert.ToDouble(splitted[j].Replace('.', ','));
+                    }
+                    
+                }
+                return result;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("file problem: {0}", e);
+            }
+            
+
+            return new double[,] { };
+        }
+
         public  List<Double> getValues()
         {
             return values;
