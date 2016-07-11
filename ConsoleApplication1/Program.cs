@@ -1,21 +1,5 @@
 ﻿using System;
-using ABMath.ModelFramework.Models;
-using ABMath.ModelFramework.Data;
-using MathNet.Numerics.Distributions;
-using MathNet.Numerics.RandomSources;
-using MathNet.Numerics;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Deedle;
-using statistic;
-using RDotNet;
-
-using System.Text;
 using Accord.Statistics.Analysis;
-using Accord.Math;
 
 namespace ConsoleApplication1
 {
@@ -159,8 +143,9 @@ namespace ConsoleApplication1
 
             // At this point, the actual and expected matrices
             // should be equal up to 8 decimal places.
+           // 
+            Write.toTXT(actual);
             Console.ReadKey();
-
         }
 
     }
